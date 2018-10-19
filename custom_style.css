@@ -1,0 +1,16 @@
+body {
+    background-color: lightblue;
+}
+
+#game_thumbinails {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.zoom {
+    transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+    transform: scale(1.15); /* 1.15 = 115% zoom */
+}
