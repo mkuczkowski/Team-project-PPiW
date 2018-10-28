@@ -249,49 +249,97 @@ session_start();
     <div class="col-lg-4 col-sm-6 zoom">
       <div class="thumbnail">
           <img src="1.jpg">
+          <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
       </div>
   </div>
   <div class="col-lg-4 col-sm-6 zoom">
     <div class="thumbnail">
         <img src="1.jpg">
+        <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
     </div>
 </div>
 <div class="col-lg-4 col-sm-6 zoom">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>
 </div>
 <div class="col-lg-4 col-sm-6 zoom">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>
 </div>
 <div class="col-lg-4 col-sm-6 zoom">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>
 </div>
 <div class="col-lg-4 col-sm-6 zoom">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>  
 </div>
-<div class="col-lg-4 col-sm-6 zoom">
+<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>
 </div>
-<div class="col-lg-4 col-sm-6 zoom">
+<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>
 </div>
-<div class="col-lg-4 col-sm-6 zoom">
+<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
   <div class="thumbnail">
       <img src="1.jpg">
+      <div class="caption">
+        <h3>The Witcher 3</h3>
+        <p>Prize: 25€</p>
+        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
+      </div>
   </div>
 </div>
 </div>
+<div id="loadMore" style="margin-left: 23%;">
+      <a href="#" class="btn btn-primary btn-lg" style="padding-left: 25%; padding-right: 25%">Show more games <i class="fas fa-gamepad"></i></a>
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -304,6 +352,18 @@ session_start();
       $("#signUpBtn").click(function(){
           $("#modalSign").modal();
       });
+  });
+  $(document).ready(function () {
+  if ($(".zoom:hidden").length != 0) {
+      $("#loadMore").show();
+    }   
+    $("#loadMore").on('click', function (e) {
+      e.preventDefault();
+      $(".zoom:hidden").slice(0, 6).slideDown();
+      if ($(".zoom:hidden").length == 0) {
+        $("#loadMore").fadeOut('slow');
+      }
+    });
   });
   </script>
 </body>
