@@ -12,14 +12,14 @@
 	}
 	else
 	{
-		$email = $_POST['email'];
+		$nick = $_POST['nick'];
 		$password = $_POST['password'];
 		
-		$email = htmlentities($email, ENT_QUOTES, "UTF-8");
+		$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
 	
 		if ($result = @$connect->query(
-		sprintf("SELECT * FROM users WHERE email='%s'",
-		mysqli_real_escape_string($connect, $email))))
+		sprintf("SELECT * FROM users WHERE users='%s'",
+		mysqli_real_escape_string($connect, $nick))))
 		{
 			$how_many_users = $result->num_rows;
 			if($how_many_users>0)
@@ -33,10 +33,10 @@
 					$_SESSION['email'] = $line['email'];
 					
 					$result->free_result();
-	                header('Location: PPiW_shop.php');
+	    header('Location: PPiW_shop.php');
 				}
 		    }
-		$connect->close();
+		$polaczenie->close();
 	    }
 	}
 ?>

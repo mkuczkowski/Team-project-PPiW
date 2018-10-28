@@ -8,6 +8,7 @@ session_start();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="custom_style.css">
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body>
@@ -44,8 +45,8 @@ session_start();
       </ul>
       <a class="navbar-brand" href="#">PPiW shop</a>
       <ul class="nav navbar-nav navbar-right">
-	  <
-              <li id="signUpBtn"><a href="#"><i class="fas fa-user-plus"></i> Sign Up </a></li>
+	  
+          <li id="signUpBtn"><a href="#"><i class="fas fa-user-plus"></i> Sign Up </a></li> 
           <?php 
 		  if(@$_SESSION['correct_login'] === 1)
 			  echo '<li id="loginBtn"><a href="logout.php"><i class="fas fa-user"></i> Log out</a></li>' ;
@@ -73,10 +74,50 @@ session_start();
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
   	  <?php 
- /* if((@$_SESSION['bad_login'] === 1) && (@$_SESSION['correct_login'] === 0))
+  if((@$_SESSION['bad_login'] === 1) )
   {
-	 echo  '<div class="alert alert-danger" role="alert"> Coś poszło nie tak? Spróbuj jeszcze raz !</div>' ;
-  } */
+	 echo  '<div class="alert alert-danger" role="alert"> Invalid email or password</div>' ;
+  } 
+  if(@$_SESSION['tooShortOrLongNick'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Nick must have 3-20 letters </div>' ;
+  } 
+  if(@$_SESSION['OnlyLetterOrNubmerToNick'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Nick must have only letters or number </div>' ;
+  } 
+  if(@$_SESSION['invalidEmail'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Invalid email</div>' ;
+  } 
+  if(@$_SESSION['tooShortOrLongPassword'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Password must have 8-20 letters </div>' ;
+  } 
+  if(@$_SESSION['passwordIsNotEqualTo'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Password is not equal to password-repeat </div>' ;
+  } 
+  if(@$_SESSION['checkboxIsNotChecked'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Checkbox is not checked </div>' ;
+  } 
+  if(@$_SESSION['recaptchaIsNotChecked'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Recaptcha is not checked </div>' ;
+  } 
+  if(@$_SESSION['emailIsAlreadyExist'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Email is already exist </div>' ;
+  } 
+  if(@$_SESSION['nickIsAlreadyExist'] === 1)
+  {
+	 echo  '<div class="alert alert-danger" role="alert"> Nick is already exist </div>' ;
+  } 
+  if(@$_SESSION['correctSignUp'] === 1)
+  {
+	 echo  '<div class="alert alert-success" role="alert"> Registration completed successfully. You can log in </div>' ;
+  } 
 ?>
 </nav>
 
@@ -127,11 +168,11 @@ session_start();
              <h4 class="modal-title">Sign up</h4>
            </div>
            <div class="modal-body">
-               <form action="sign">
+               <form action="signUp.php" method = "post">
                   <div class="form-group">
                       <div class="input-container">
                           <i class="fa fa-user icon"></i>
-                          <input class="input-field" type="text" placeholder="Username" name="login" required>
+                          <input class="input-field" type="text" placeholder="Username" name="nick" required>
                         </div>
                   </div>
                    <div class="form-group">
@@ -149,14 +190,16 @@ session_start();
                    <div class="form-group">
                       <div class="input-container">
                           <i class="fas fa-key icon"></i>
-                          <input class="input-field" type="password" placeholder="Repeat password" name="password-repeat" required>
+                          <input class="input-field" type="password" placeholder="Repeat password" name="passwordRepeat" required>
                         </div>
                   </div>       
                    <div class="checkbox">
                      <label>
-                       <input type="checkbox" required><p>I agree to <a href="#" style="color:dodgerblue">terms & privacy</a>.</p>
+                       <input type="checkbox" name="rules" required><p>I agree to <a href="#" style="color:dodgerblue">terms & privacy</a>.</p>
                      </label>
                    </div>
+                   <div class="g-recaptcha" data-sitekey="6Lc1CHcUAAAAAAGc1QUWW09ttUwMdc53wB5TCDaW"></div>
+				   </br>
                    <button type="submit" class="btn btn-info">Create account</button>
                  </form>
            </div>      
