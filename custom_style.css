@@ -1,5 +1,7 @@
 body {
-    background-color: lightblue;
+    background-color: rgb(139, 190, 241);
+    font-family: 'Kanit', sans-serif;
+    font-size: 17px;
 }
 
 #game_thumbinails {
@@ -43,3 +45,18 @@ body {
 .btn:hover {
     opacity: 1;
   }
+
+.checked {
+  color: orange;
+}
+
+#logo-nav {
+  color: dodgerblue;
+  font-size: 38px;
+  padding-left: 12%;
+  font-family: 'Montserrat Subrayada', sans-serif;
+}
+
+#logo-shop {
+  color: orange;
+}
