@@ -10,12 +10,9 @@ session_start();
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="custom_style.css">
   <script src='https://www.google.com/recaptcha/api.js'></script>
-
 </head>
 <body>
-
 <!-- NAVBAR -->
-
 	<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -306,7 +303,7 @@ session_start();
     <div class="thumbnail">
         <img src="https://www.gry-online.pl/galeria/html/wiadomosci/bigphotos/196831812.jpg">
         <div class="caption">
-        <h3>Assassin's Creed: Oddyssey</h3>
+        <h3>Assassin's Creed: Odyssey</h3>
         <p>Price: 49€</p>
         <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
       </div>
@@ -441,6 +438,9 @@ session_start();
       }
     });
   });
+  setTimeout(function() {
+    $('.alert').fadeOut('slow');
+}, 6000);
   </script>
 </body>
 </html>
