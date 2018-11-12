@@ -52,14 +52,17 @@ session_start();
 		      echo '<li id="loginBtn"><a href="#"><i class="fas fa-user " style="color: dodgerblue;"></i> Log in</a></li>' ;	  
 	      ?>		    
 		<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart" style="color: orange;"></i> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">...</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">...</a></li>
-          </ul>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart" style="color: orange;"></i> <span class="badge product-quantity" style="background-color:dodgerblue;">0</span> <span class="caret"></span></a>
+          <div class="dropdown-menu shopping-cart" style="width: 360px; padding: 4px; background-color: lightblue;">
+            <h3 align="center" style="border-bottom: 1.5px dashed black; padding-bottom: 12px;">Your cart: </h3>
+            <ul class="shopping-cart-list">
+            <!-- Shopping cart list loading dynamically -->
+            </ul>
+            <div class="cart-buttons" style="padding-top: 15px;">
+              <button type="submit" class="btn btn-danger empty-cart-btn" style="float:left;">Empty cart <i class="fas fa-trash-alt"></i></a>
+              <button type="submit" class="btn btn-success cart-checkout" style="float:right;">Checkout:  <span class="total-price">€0</span></a>
+            </div>
+          </div>
         </li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
@@ -68,7 +71,6 @@ session_start();
         </div>
         <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
       </form>
-
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
   	  <?php 
@@ -106,11 +108,11 @@ session_start();
   } 
   if(@$_SESSION['emailIsAlreadyExist'] === 1)
   {
-	 echo  '<div class="alert alert-danger" role="alert"> Email is already exist </div>' ;
+	 echo  '<div class="alert alert-danger" role="alert"> Email already exists </div>' ;
   } 
   if(@$_SESSION['nickIsAlreadyExist'] === 1)
   {
-	 echo  '<div class="alert alert-danger" role="alert"> Nick is already exist </div>' ;
+	 echo  '<div class="alert alert-danger" role="alert"> Nick already exists </div>' ;
   } 
   if(@$_SESSION['correctSignUp'] === 1)
   {
@@ -246,201 +248,17 @@ session_start();
     </a> 
   </div>
 </div>
-
-<div class="container" id="game_thumbinails">
-  <div class="row">
-    <div class="col-lg-4 col-sm-6 zoom">
-      <div class="thumbnail">
-          <img src="https://i.imgur.com/hnWjQQH.jpg">
-          <div class="caption">
-        <h3>The Witcher 3</h3>
-        <p>Price: 25€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" data-toggle="modal" data-target="#gameInfo" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-      </div>
-  </div>
-  <div id="gameInfo" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-    <!-- Modal game details-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">The Witcher 3: Wild Hunt</h4>
-      </div>
-      <div class="modal-body">
-      <div class="row">
-        <div class="col-xs-6 col-md-6">
-        <iframe width="430" height="280" class="thumbnail"
-          src="https://www.youtube.com/embed/c0i88t0Kacs">
-        </iframe>
-        </div>
-        <div class="col-xs-3 col-md-1">
-        <img width="220" height="280" class="thumbnail"
-          src="https://images-na.ssl-images-amazon.com/images/I/91YuZ-kasRL._AC_SX215_.jpg">
-        </div>     
-      </div>
-      <div class="jumbotron">
-      <p>Experience the epic conclusion to the story of professional monster slayer, witcher Geralt of Rivia.
-         As war rages on throughout the Northern Realms, you take on the greatest contract of your life — tracking down the Child of Prophecy,
-          a living weapon that can alter the shape of the world.</p>   
-          <h3>Rating: <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span></h3>
-          <h3>Price: 25 €</h3>
-          </div>
-      </div>
-      <div class="modal-footer">
-      <a href="#" class="btn btn-info" role="button" data-dismiss="modal" >Add to cart <i class="fas fa-shopping-cart"></i></a>
-      </div>
+    <div class="container" style="padding-top: 10px;">
+    <div class="row">
+    <div class="products">
+   <!-- Dynamically loading games here -->
     </div>
-
-  </div>
-</div>
-  <div class="col-lg-4 col-sm-6 zoom">
-    <div class="thumbnail">
-        <img src="https://www.gry-online.pl/galeria/html/wiadomosci/bigphotos/196831812.jpg">
-        <div class="caption">
-        <h3>Assassin's Creed: Odyssey</h3>
-        <p>Price: 49€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
     </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom">
-  <div class="thumbnail">
-      <img src="https://i.redd.it/wzxoxq43j9q01.jpg">
-      <div class="caption">
-        <h3>Marvel's Spider-man</h3>
-        <p>Price: 59€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom">
-  <div class="thumbnail">
-      <img src="https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTc8lb6R3Yyf6hgXB.B9k.h3a99p.AXB.HT0fqS_chRpDfZP4bn.XwqcFKIvTnoTajNzXN2Fk9r.GJ4vVTI3bZG9IXlLdzte2fdu7ibJuh_SGGzG2p7yy5L9P2mET3OQklo_pfoaQVnN8kcZ2GSSBj0dyTCmZj_GkZVtmo1xI0nK4g-&h=1080&w=1920&format=jpg">
-      <div class="caption">
-        <h3>Shadow of the Tomb Raider</h3>
-        <p>Price: 49€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom">
-  <div class="thumbnail">
-  <img src="https://images5.alphacoders.com/930/thumb-1920-930953.jpg">
-      <div class="caption">
-        <h3>Hitman 2</h3>
-        <p>Price: 55€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom">
-  <div class="thumbnail">
-      <img src="https://www.chip.pl/uploads/2018/06/650eh9mS0b3kiegDiVzpTXEEFU5ou9kK.png">
-      <div class="caption">
-        <h3>Fallout 76</h3>
-        <p>Price: 59€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>  
-</div>
-<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
-  <div class="thumbnail">
-      <img src="https://static.digitalitem.trade/shop/wp-content/uploads/2018/06/battlefield-5.jpg">
-      <div class="caption">
-        <h3>Battlefield V</h3>
-        <p>Price: 45€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
-  <div class="thumbnail">
-      <img src="https://image.redbull.com/rbcom/010/2015-04-16/1331717465693_2/0100/0/1/gta-v-pc.jpeg">
-      <div class="caption">
-        <h3>Grand Theft Auto V</h3>
-        <p>Price: 29€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
-  <div class="thumbnail">
-  <img src="http://www.wallpapermaiden.com/wallpaper/21366/download/1920x1080/red-dead-redemption-2-artwork.jpg">
-      <div class="caption">
-        <h3>Red Dead Redemption II</h3>
-        <p>Price: 59€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
-  <div class="thumbnail">
-      <img src="https://www.tabletowo.pl/wp-content/uploads/2018/10/Black-Ops-4-tabletowo-6.jpg">
-      <div class="caption">
-        <h3>Call of Duty: Black Ops 4</h3>
-        <p>Price: 65€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
-  <div class="thumbnail">
-      <img src="https://img6.gram.pl/thumb/20180907143020.jpg">
-      <div class="caption">
-        <h3>FIFA 19</h3>
-        <p>Price: 49€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-<div class="col-lg-4 col-sm-6 zoom" style="display: none;">
-  <div class="thumbnail">
-      <img src="https://images7.alphacoders.com/583/583750.jpg">
-      <div class="caption">
-        <h3>Gothic II</h3>
-        <p>Price: 5€</p>
-        <p><a href="#" class="btn btn-info" role="button">Add to cart <i class="fas fa-shopping-cart"></i></a> <a href="#" class="btn btn-default" role="button" style="float: right;">Show details <i class="fas fa-info-circle"></i></a></p>
-      </div>
-  </div>
-</div>
-</div>
-<div id="loadMore" style="margin-left: 23%;">
-      <a href="#" class="btn btn-primary btn-lg" style="padding-left: 25%; padding-right: 25%;">Show more games <i class="fas fa-gamepad"></i></a>
     </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function(){
-      $("#loginBtn").click(function(){
-          $("#modalLogin").modal();
-      });
-      $("#signUpBtn").click(function(){
-          $("#modalSign").modal();
-      });
-  });
-  $(document).ready(function () {
-  if ($(".zoom:hidden").length != 0) {
-      $("#loadMore").show();
-    }   
-    $("#loadMore").on('click', function (e) {
-      e.preventDefault();
-      $(".zoom:hidden").slideDown();
-      if ($(".zoom:hidden").length == 0) {
-        $("#loadMore").fadeOut('slow');
-      }
-    });
-  });
-  setTimeout(function() {
-    $('.alert').fadeOut('slow');
-}, 6000);
-  </script>
+<script src="shop-scripts.js"></script>
 </body>
 </html>
