@@ -44,7 +44,7 @@ session_start();
       <a class="navbar-brand" id="logo-nav" href="#">PPiW <span id="logo-shop">shop</span></a>
       <ul class="nav navbar-nav navbar-right">
 	  
-          <li id="signUpBtn"><a href="#"><i class="fas fa-user-plus" style="color: dodgerblue;"></i> Sign Up </a></li> 
+          <li id="signUpBtn" <?php if(@$_SESSION['correct_login'] === 1) echo 'style="display:none"';?>><a href="#"><i class="fas fa-user-plus" style="color: dodgerblue;"></i> Sign Up </a></li> 
           <?php 
 		  if(@$_SESSION['correct_login'] === 1)
 			  echo '<li id="loginBtn"><a href="logout.php"><i class="fas fa-user" style="color: dodgerblue;"></i> Log out</a></li>' ;
@@ -53,7 +53,7 @@ session_start();
 	      ?>		    
 		<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart" style="color: orange;"></i> <span class="badge product-quantity" style="background-color:dodgerblue;">0</span> <span class="caret"></span></a>
-          <div class="dropdown-menu shopping-cart" style="width: 360px; padding: 4px; background-color: lightblue;">
+          <div class="dropdown-menu shopping-cart" style="width: 440px; padding: 4px; background-color: lightblue; max-height: 600px; overflow: auto;">
             <h3 align="center" style="border-bottom: 1.5px dashed black; padding-bottom: 12px;">Your cart: </h3>
             <ul class="shopping-cart-list">
             <!-- Shopping cart list loading dynamically -->
@@ -224,16 +224,16 @@ session_start();
         <img src="https://i.imgur.com/hnWjQQH.jpg">
       </div>
       <div class="item">
-        <img src="https://i.imgur.com/Bi8oNjn.jpg">
+        <img src="https://hdqwalls.com/wallpapers/hitman-2-4k-0i.jpg">
       </div>
       <div class="item active">
         <img src="https://image.redbull.com/rbcom/010/2015-04-16/1331717465693_2/0100/0/1/gta-v-pc.jpeg">
       </div>
       <div class="item">
-        <img src="https://www.gry-online.pl/galeria/html/wiadomosci/bigphotos/196831812.jpg">
+        <img src="http://swiatgry.pl/media/tapety/10088/ac-odyssey-3.jpg">
       </div>
       <div class="item">
-        <img src="https://i.redd.it/wzxoxq43j9q01.jpg">
+        <img src="http://www.wallpapermaiden.com/wallpaper/21366/download/1920x1080/red-dead-redemption-2-artwork.jpg">
       </div>
     </div>
   

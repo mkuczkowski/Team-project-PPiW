@@ -5,10 +5,11 @@ $(document).ready(function(){
     $("#signUpBtn").click(function(){
         $("#modalSign").modal();
     });
-});
+  });
 setTimeout(function() {
   $('.alert').fadeOut('slow');
 }, 6000);
+
 var ShoppingCart = (function($) {
   "use strict";
 
@@ -186,13 +187,21 @@ var ShoppingCart = (function($) {
         productsEl.appendChild(productEl);
       });
     }
-
   var generateCartList = function() {
     cartEl.innerHTML = "";
     productsInCart.forEach(function(item) {
-      var li = document.createElement("li");
-      li.innerHTML = `${item.quantity} x ${item.product.name} - $${item.product.price * item.quantity}`;
-      cartEl.appendChild(li);
+      var productElC = document.createElement("div");
+            productElC.className = "media";
+            productElC.innerHTML = `  
+                <div class="media-left">
+                    <img class="media-object" src="${item.product.cover}" alt="${item.product.name}" style="width: 64px; height: 64px;">      
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">${item.quantity} x ${item.product.name}: ${item.product.price * item.quantity}€</h4>
+                </div>
+              </div>
+            `;
+      cartEl.appendChild(productElC);
     });
     productQuantityEl.innerHTML = productsInCart.length;
     generateCartButtons();
