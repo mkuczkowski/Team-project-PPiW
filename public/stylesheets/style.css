@@ -1,0 +1,77 @@
+body {
+  background: rgb(227,238,109);
+background: radial-gradient(circle, rgba(227,238,109,1) 30%, rgba(113,212,213,1) 76%);
+  font-family: 'Kanit', sans-serif;
+  font-size: 17px;
+}
+
+#game_thumbinails {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.08); /* 1.15 = 115% zoom */
+}
+* {box-sizing: border-box;}
+
+.input-container {
+display: flex;
+width: 100%;
+margin-bottom: 15px;
+}
+
+.icon {
+padding: 14px;
+background: dodgerblue;
+color: white;
+min-width: 50px;
+text-align: center;
+}
+
+.input-field {
+width: 100%;
+padding: 10px;
+outline: none;
+}
+
+.input-field:focus {
+border: 2px solid dodgerblue;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.checked {
+color: orange;
+}
+
+#logo-nav {
+color: dodgerblue;
+font-size: 38px;
+padding-left: 18%;
+font-family: 'Montserrat Subrayada', sans-serif;
+}
+
+#logo-shop {
+color: orange;
+}
+
+.container {
+  padding-top: 2.5%;
+  padding-bottom: 3%;
+}
+
+.badge {
+  background-color:dodgerblue;
+  font-size: 14px;
+}
+
+.cart-list {
+  font-size: 19px;
+}

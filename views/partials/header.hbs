@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Featured <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">On sale</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Game categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">RPG</a></li>
+                            <li><a href="#">FPS</a></li>
+                            <li><a href="#">Action etc</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">etc</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">...</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a class="navbar-brand" id="logo-nav" href="/">PPiW <span id="logo-shop">shop</span></a>
+                <ul class="nav navbar-nav navbar-right">
+                  {{# if login }}
+                    <li><a href="/user/profile"><i class="fas fa-user-cog" style="color: dodgerblue;"></i> My account </a></li>
+                    <li><a href="/user/logout"><i class="fas fa-sign-out-alt" style="color: dodgerblue;"></i> Logout </a></li>
+                  {{ else }}
+                    <li id="signUpBtn" ><a href="/user/signup"><i class="fas fa-user-plus" style="color: dodgerblue;"></i> Sign Up </a></li>
+                    <li id="loginBtn"><a href="/user/signin"><i class="fas fa-user " style="color: dodgerblue;"></i> Sign in</a></li>
+                  {{/if}}
+                    <li>
+                        <a href="/shopping-cart"><i class="fas fa-shopping-cart" style="color: orange;"></i> Cart <span class="badge product-quantity" style="background-color:dodgerblue;">{{session.cart.totalQuantity}}</span></a>  
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Find your game here">
+                    </div>
+                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+</nav>

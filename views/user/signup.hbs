@@ -1,0 +1,28 @@
+<div class="row jumbotron">
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Create account</h1>
+        {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                    <p>{{ this }}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <form action="/user/signup" method="POST">
+            <div class="form-group">
+                <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="rules" required>
+                    <p>I agree to <a href="#" style="color:dodgerblue">terms & privacy</a>.</p>
+                </label>
+            </div>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <button type="submit" class="btn btn-lg btn-primary" style="width: 100%;">Sign up</button>
+        </form>
+    </div>
+</div>
