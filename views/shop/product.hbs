@@ -1,0 +1,18 @@
+<div class="container">
+{{# if product }}
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1 align="center">{{product.title}}</h1>  
+    </div>
+    <div class="panel-body">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="{{product.trailer}}" allowfullscreen></iframe>
+      </div>
+        <div class="jumbotron">
+          <p>{{product.description}}</p>
+        </div>
+      <a href="/add-to-cart/{{product._id}}" class="btn btn-lg btn-info btn-success pull-right zoom" role="button">Add to cart <i class="fas fa-cart-plus"></i></a>
+    </div>
+  </div>
+{{/if}}
+</div>

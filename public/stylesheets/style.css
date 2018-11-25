@@ -11,7 +11,7 @@ background: radial-gradient(circle, rgba(227,238,109,1) 30%, rgba(113,212,213,1)
 }
 
 .zoom {
-  transition: transform .2s; /* Animation */
+  transition: transform .4s; /* Animation */
 }
 
 .zoom:hover {
