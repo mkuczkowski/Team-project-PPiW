@@ -38,11 +38,11 @@
                         <a href="/shopping-cart"><i class="fas fa-shopping-cart" style="color: orange;"></i> Cart <span class="badge product-quantity" style="background-color:dodgerblue;">{{session.cart.totalQuantity}}</span></a>  
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
+                <form action="/" class="navbar-form navbar-right" method="GET">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Find your game here">
+                        <input type="text" class="form-control search" name="search" placeholder="Search for games...">
                     </div>
-                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    <button type="submit" class="btn btn-info" value="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

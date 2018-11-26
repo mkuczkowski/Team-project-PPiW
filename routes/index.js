@@ -6,14 +6,30 @@ var Order = require('../models/order');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Product.find(function(err, docs) {
-    var productChunks = [];
-    var chunkSize = 3;
-    for(var i = 0; i < docs.length; i += chunkSize) {
-      productChunks.push(docs.slice(i, i + chunkSize));
-    }
-    res.render('shop/index', { title: 'PPiW Shop', products: productChunks });
-  });
+  if(req.query.search) {
+    const regex = new RegExp(escapeRegExp(req.query.search), 'gi');
+    Product.find({title: regex}, function(err, products) {
+      if(err) {
+        console.log(err);
+      } else {
+        var productChunks = [];
+        var chunkSize = 3;
+        for(var i = 0; i < products.length; i += chunkSize) {
+          productChunks.push(products.slice(i, i + chunkSize));
+        }
+          res.render('shop/index', {products: productChunks});
+        }
+    });
+  } else {
+    Product.find(function(err, docs) {
+      var productChunks = [];
+      var chunkSize = 3;
+      for(var i = 0; i < docs.length; i += chunkSize) {
+        productChunks.push(docs.slice(i, i + chunkSize));
+      }
+      res.render('shop/index', { title: 'PPiW Shop', products: productChunks });
+    });
+  }
 });
 
 router.get('/product/:id', function(req, res, next) {
@@ -91,6 +107,10 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   res.redirect('/user/signin');
-}
+};
+
+function escapeRegExp(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+};
 
 module.exports = router;

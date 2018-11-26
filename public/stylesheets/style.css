@@ -1,8 +1,21 @@
 body {
-  background: rgb(227,238,109);
-background: radial-gradient(circle, rgba(227,238,109,1) 30%, rgba(113,212,213,1) 76%);
+  background: url("https://c.pxhere.com/photos/66/81/gamepad_video_game_controller_game_controller_controller_fun_playing_gaming_technology-568722.jpg!d") no-repeat fixed;
   font-family: 'Kanit', sans-serif;
   font-size: 17px;
+  background-size: cover;
+}
+
+.form-box {
+  width: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.form-box input {
+  height: 50px;
 }
 
 #game_thumbinails {
@@ -23,14 +36,6 @@ background: radial-gradient(circle, rgba(227,238,109,1) 30%, rgba(113,212,213,1)
 display: flex;
 width: 100%;
 margin-bottom: 15px;
-}
-
-.icon {
-padding: 14px;
-background: dodgerblue;
-color: white;
-min-width: 50px;
-text-align: center;
 }
 
 .input-field {
@@ -74,4 +79,5 @@ color: orange;
 
 .cart-list {
   font-size: 19px;
+  color: white;
 }
