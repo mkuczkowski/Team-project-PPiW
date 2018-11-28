@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Cart = require('../models/cart');
+var Comments = require('../models/comment');
 var Product = require('../models/product');
 var Order = require('../models/order');
-
+var date = require('date-and-time');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.query.search) {
@@ -33,12 +34,41 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/product/:id', function(req, res, next) {
-  var productId = req.params.id;
-  Product.findById(productId, function(err, product) {
+  Product.findById(req.params.id).populate('comments').exec(function(err, foundProduct) {
     if (err) {
       return res.redirect('/');
     }
-  res.render('shop/product', {product: product});
+  res.render('shop/product', {product: foundProduct});
+  });
+});
+
+router.get('/product/:id/comment/new', isLoggedIn, function(req, res, next) {
+  Product.findById(req.params.id, function(err, product) {
+    if (err) {
+      return res.redirect('/');
+    }
+    res.render('shop/new', {product: product});
+  });
+});
+
+router.post('/product/:id/comment', isLoggedIn, function(req, res, next) {
+  let now = new Date();
+  Product.findById(req.params.id, function(err, product) {
+    if(err) {
+      console.log(err);
+      res.redirect('/');
+    } else {
+      Comments.create({author: req.body.authortxt, content: req.body.contenttxt, created: date.format(now, 'YYYY/MM/DD HH:mm:ss')}, function(err, comment) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(req.body.comment);
+          product.comments.push(comment);
+          product.save();
+          res.redirect('/product/' + product._id);
+        }
+      });
+    }
   });
 });
 

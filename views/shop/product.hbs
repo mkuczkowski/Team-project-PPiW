@@ -14,5 +14,22 @@
       <a href="/add-to-cart/{{product._id}}" class="btn btn-lg btn-info btn-success pull-right zoom" role="button">Add to cart <i class="fas fa-cart-plus"></i></a>
     </div>
   </div>
+    <button class="btn btn-primary zoom show-more" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Show opinions about {{product.title}} <i class="fas fa-comments"></i>
+</button>
+<div class="collapse" id="collapseExample">
+{{# each product.comments }}
+    <div class="panel panel-info">
+      <div class="panel-heading"><i class="fas fa-user-circle"></i> {{this.author}}</div>
+        <div class="panel-body">
+          <i class="fas fa-comment-dots"></i> {{this.content}}
+          <p class="pull-right" style="font-size: 0.75em; font-style: italic; "> {{this.created}}</p>
+        </div>
+    </div>
+{{/each}}
+  <a href="/product/{{product._id}}/comment/new" class="btn btn-success zoom" style="margin-top: 1%; width: 100%;">Add a new comment</a>
+</div>
+
+
 {{/if}}
 </div>
