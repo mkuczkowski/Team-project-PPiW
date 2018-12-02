@@ -33,8 +33,7 @@ router.use('/', notLoggedIn, function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
-  var messages = req.flash('error');
-  res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+  res.render('user/signup', {csrfToken: req.csrfToken(), message: req.flash("error")});
 });
 
 router.post('/signup', passport.authenticate('local.signup' , {
@@ -44,8 +43,7 @@ router.post('/signup', passport.authenticate('local.signup' , {
 }));
 
 router.get('/signin', function(req, res, next) {
-  var messages = req.flash('error');
-  res.render('user/signin', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+  res.render('user/signin', {csrfToken: req.csrfToken(), message: req.flash("error") });
 });
 
 router.post('/signin', passport.authenticate('local.signin', {
@@ -60,6 +58,7 @@ function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
   }
+  req.flash("error", "You must be logged in to do that!");
   res.redirect('/');
 }
 

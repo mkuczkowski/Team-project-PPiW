@@ -40,10 +40,13 @@
                 </ul>
                 <form action="/" class="navbar-form navbar-right" method="GET">
                     <div class="form-group">
-                        <input type="text" class="form-control search" name="search" placeholder="Search for games...">
+                        <input type="text" name="search" class="form-control search" id="searchInput" placeholder="Search for games...">
+                        <button type="submit" class="btn" value="search" id="submitSearch"><i class="fas fa-search"></i></button>
                     </div>
-                    <button type="submit" class="btn btn-info" value="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
 </nav>
+{{#if message}}
+<div class="alert alert-danger">{{ this.message }}</div>
+{{/if}}
