@@ -13,7 +13,10 @@ var schema = new Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }  
-    ]
+    ],
+    rating: {type: Number, required: true, default: 0},
+    totalSumOfVotes: {type: Number, default: 0},
+    votes: {type: Number, default: 0}
 });
 
 module.exports = mongoose.model('Product', schema);

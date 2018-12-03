@@ -10,6 +10,19 @@
       </div>
         <div class="jumbotron">
           <p>{{product.description}}</p>
+          <div class="star-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>Rating: <span class="rating-value">{{product.rating}}</span>/10 <i>({{product.votes}} votes)</i></p>
         </div>
       <a href="/add-to-cart/{{product._id}}" class="btn btn-lg btn-info btn-success pull-right zoom" role="button">Add to cart <i class="fas fa-cart-plus"></i></a>
     </div>
@@ -23,6 +36,7 @@
       <div class="panel-heading"><i class="fas fa-user-circle"></i> {{this.author}}</div>
         <div class="panel-body">
           <i class="fas fa-comment-dots"></i> {{this.content}}
+          <p>Rating: {{this.rating}}/10</p>
           <p class="pull-right" style="font-size: 0.75em; font-style: italic; "> {{this.created}}</p>
         </div>
     </div>

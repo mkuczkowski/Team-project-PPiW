@@ -58,12 +58,19 @@ router.post('/product/:id/comment', isLoggedIn, function(req, res, next) {
       console.log(err);
       res.redirect('/');
     } else {
-      Comments.create({author: req.body.authortxt, content: req.body.contenttxt, created: date.format(now, 'YYYY/MM/DD HH:mm:ss')}, function(err, comment) {
+      Comments.create({author: req.body.authortxt, content: req.body.contenttxt,
+        rating: req.body.ratingval, created: date.format(now, 'YYYY/MM/DD HH:mm:ss')}, function(err, comment) {
         if(err) {
           console.log(err);
         } else {
-          console.log(req.body.comment);
+          comment.product = product;
+          comment.save();
           product.comments.push(comment);
+          product.totalSumOfVotes += comment.rating;
+          var sum = product.totalSumOfVotes;
+          product.votes++;
+          var newRating = sum / product.votes;
+          product.rating = Math.round(newRating * 100) / 100;
           product.save();
           res.redirect('/product/' + product._id);
         }
@@ -142,6 +149,18 @@ function isLoggedIn(req, res, next) {
 
 function escapeRegExp(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+};
+
+function calculateAvgRating(comments) {
+  if (comments.length === 0) {
+    return 0;
+}
+  var sum = 0;
+    comments.forEach(function (item) {
+        sum += item.rating;
+    });
+    var result = sum / comments.length;
+    return result;
 };
 
 module.exports = router;

@@ -2,11 +2,15 @@
         <h4>Add new comment to {{product.title}}</h4>
         <form action="/product/{{product._id}}/comment" method="POST">
             <div class="form-group">
-                <input type="text" class="form-control" name="authortxt" placeholder="Author" required></input>
+                <input type="text" class="form-control" name="authortxt" placeholder="Author" required>
             </div>
             <div class="form-group">
                 <textarea class="form-control" name="contenttxt" placeholder="Opinion..." style="max-width: 100%; min-width: 100%; height: 130px;" required></textarea>
             </div>
-            <button type="submit" class="btn btn-lg btn-primary" style="width: 100%;">Submit</button>
+            <div class="form-group">
+                <input type="number" min="1" max="10" placeholder="Rating (1 - 10)" name="ratingval" style="width: 100%; padding: 3%; color:black;" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary" style="width: 100%; height: 50%;">Submit</button>
+            
         </form>
 </div>
