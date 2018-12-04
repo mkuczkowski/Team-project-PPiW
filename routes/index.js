@@ -18,8 +18,8 @@ router.get('/', function(req, res, next) {
         for(var i = 0; i < products.length; i += chunkSize) {
           productChunks.push(products.slice(i, i + chunkSize));
         }
-          res.render('shop/index', {products: productChunks});
-        }
+        res.render('shop/index', {products: productChunks});
+      }
     });
   } else {
     Product.find(function(err, docs) {
@@ -38,7 +38,7 @@ router.get('/product/:id', function(req, res, next) {
     if (err) {
       return res.redirect('/');
     }
-  res.render('shop/product', {product: foundProduct});
+  res.render('shop/product', {product: foundProduct, message: req.flash("error")});
   });
 });
 
@@ -47,7 +47,18 @@ router.get('/product/:id/comment/new', isLoggedIn, function(req, res, next) {
     if (err) {
       return res.redirect('/');
     }
-    res.render('shop/new', {product: product});
+    var userVoted = false;
+      product.reviewers.forEach(function(reviewer) {
+        if(reviewer.equals(req.user._id)) {
+          userVoted = true;     
+        }
+      });
+    if(userVoted) {
+      req.flash("error", "You already reviewed this product!");
+      res.redirect('/product/' + product._id);
+    } else {
+      res.render('shop/new', {product: product});
+    }
   });
 });
 
@@ -59,13 +70,14 @@ router.post('/product/:id/comment', isLoggedIn, function(req, res, next) {
       res.redirect('/');
     } else {
       Comments.create({author: req.body.authortxt, content: req.body.contenttxt,
-        rating: req.body.ratingval, created: date.format(now, 'YYYY/MM/DD HH:mm:ss')}, function(err, comment) {
+        rating: req.body.ratingval, user: req.user, created: date.format(now, 'YYYY/MM/DD HH:mm:ss')}, function(err, comment) {
         if(err) {
           console.log(err);
         } else {
           comment.product = product;
           comment.save();
           product.comments.push(comment);
+          product.reviewers.push(req.user);
           product.totalSumOfVotes += comment.rating;
           var sum = product.totalSumOfVotes;
           product.votes++;

@@ -5,6 +5,10 @@ var schema = new Schema({
     author: {type: String, required: true},
     content: {type: String, required: true},
     created: {type: String},
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product"
