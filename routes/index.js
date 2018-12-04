@@ -127,10 +127,12 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
   if (!req.session.cart) {
     return res.render('shop/shopping-cart', {products: null});
   }
+  let now = new Date();
   var cart = new Cart(req.session.cart);
   var order = new Order({
     user: req.user, //from passport
-    cart: cart  //defined above
+    cart: cart,  //defined above
+    created: date.format(now, 'YYYY/MM/DD HH:mm:ss')
   });
   order.save(function(err, result) {
     req.flash('success', 'Successfully bought product!');
@@ -149,18 +151,6 @@ function isLoggedIn(req, res, next) {
 
 function escapeRegExp(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-};
-
-function calculateAvgRating(comments) {
-  if (comments.length === 0) {
-    return 0;
-}
-  var sum = 0;
-    comments.forEach(function (item) {
-        sum += item.rating;
-    });
-    var result = sum / comments.length;
-    return result;
 };
 
 module.exports = router;
