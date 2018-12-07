@@ -135,17 +135,44 @@ router.get('/shopping-cart', function(req, res, next) {
   res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
+router.get('/checkout', isLoggedIn, function(req, res, next) {
+  if (!req.session.cart) {
+    return res.render('shop/shopping-cart', {products: null});
+  }
+  var cart = new Cart(req.session.cart);   
+  res.render('shop/checkout', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+});
+
 router.post('/checkout', isLoggedIn, function(req, res, next) {
   if (!req.session.cart) {
     return res.render('shop/shopping-cart', {products: null});
   }
+  var cart = new Cart(req.session.cart);
   let now = new Date();
   var cart = new Cart(req.session.cart);
   var order = new Order({
     user: req.user, //from passport
     cart: cart,  //defined above
-    created: date.format(now, 'YYYY/MM/DD HH:mm:ss')
+    created: date.format(now, 'YYYY/MM/DD HH:mm:ss'),
+    fullName: req.body.fullName,
+    email: req.body.email,
+    city: req.body.city,
+    address: req.body.address,
+    bankInfo: req.body.bankInfo,
+    totalPrice: cart.totalPrice
   });
+
+  /* TODO: Generate txt/json file with order confirmation
+  var boughtProductsInfo = [];
+  var productsInCart = cart.generateArray();
+  productsInCart.forEach(function(foundItem) {
+    boughtProductsInfo.push(foundItem.quantity + " x " + foundItem.item.title);
+  });  
+  boughtProductsInfo.forEach(function(item) {
+    console.log(item);
+  });
+  */
+
   order.save(function(err, result) {
     req.flash('success', 'Successfully bought product!');
     req.session.cart = null;

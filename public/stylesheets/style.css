@@ -14,6 +14,22 @@ body {
   color: white;
 }
 
+.scrollBtn {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scrollBtn i:hover {
+  color: orange;
+}
+
+.scrollBtn i {
+  transition: all .4s;
+  color: dodgerblue;
+  font-size: 50px;
+}
+
 .form-box input {
   height: 50px;
 }
@@ -30,6 +46,15 @@ body {
 .zoom:hover {
   transform: scale(1.08); /* 1.15 = 115% zoom */
 }
+
+.zoom-big {
+  transition: transform .5s;
+}
+
+.zoom-big:hover {
+  transform: scale(1.27);
+}
+
 * {box-sizing: border-box;}
 
 .input-container {
@@ -138,4 +163,16 @@ color: orange;
 
 #submitSearch:hover {
   color: orange;
+}
+
+.fab {
+  margin-right: 3%;
+  font-size: 45px;
+}
+
+.fab:hover {
+  color: dodgerblue;
+}
+.form-control:hover {
+  background-color: rgb(203, 214, 218);
 }

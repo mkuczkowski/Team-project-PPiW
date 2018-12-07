@@ -10,24 +10,25 @@
             <div class="panel-body">
                 <div class="row">
                     {{# each this.items }}
-                        
-                            <div class="col-lg-4 col-sm-6">
-                            <div class="thumbnail">
-                                <img src="{{this.item.cover}}" alt="{{this.item.title}}" style="width: 275px; height:325px;">
-                                <div class="caption">
-                                    <div class="clearfix">
-                                    <h3 align="center">{{this.quantity}} x {{this.item.title}}</h3>
-                                    <p align="center">{{ this.price }} €</p>
-                                    </div>     
-                                </div>
+                        <div class="col-lg-4 col-sm-6">
+                        <div class="thumbnail">
+                            <img src="{{this.item.cover}}" alt="{{this.item.title}}" style="width: 275px; height:325px;">
+                            <div class="caption">
+                                <div class="clearfix">
+                                <h3 align="center">{{this.quantity}} x {{this.item.title}}</h3>
+                                <p align="center">{{ this.price }} €</p>
+                                </div>     
                             </div>
-                            </div>
-                           
+                        </div>
+                        </div>
                     {{/each}}
                  </div>
             </div>
-            <div class="panel-footer" style="height: 50px;"><h4 class="pull-left">Money spent: {{ this.cart.totalPrice }} €</h4><i class="pull-right">{{this.created}}</i></div>
-        </div>
+            <div class="panel-footer" style="height: 80px;">
+                <h4 class="pull-left">Total cost: {{ this.cart.totalPrice }} €</h4>
+                <h4 align="center">Status: <span class="orderStatus">{{this.status}}</span></h4>
+                <p class="pull-right">{{this.created}}</p></div>
+            </div>
         {{/each}}
         </div>
     </div>
