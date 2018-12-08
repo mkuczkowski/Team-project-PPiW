@@ -1,3 +1,78 @@
+{{# if isAdmin }}
+<div class="row">
+    <div class=" panel panel-primary">
+        <div class="panel-heading">
+        <h1 align="center">Admin panel <i class="fas fa-user-tie"></i></h1>
+        </div>
+        <div class="panel-body">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-info">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <h2 style="color: black;" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Products <i class="fas fa-gamepad"></i></h2>
+        </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+          {{# each products}}
+          {{# each this }}
+            <div class="well well-sm">{{this.this.title}} <span class="label label-danger pull-right">Delete product</span></div>
+          {{/each}}
+          {{/each}}
+            <a href="/new-product" class="btn btn-success" style="width: 100%;"><h4 align="center">Add a new game <i class="far fa-plus-square"></i></h4></a>
+     </div>
+    </div>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <h2 style="color: black;" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Orders <i class="fas fa-clipboard-list"></i>
+        </h2>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+          {{# each orders}}
+          {{# each this }}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Date of order: <i>{{this.created}}</i></p>
+                    <p>Customer's full name: <i>{{this.fullName}}</i></p>
+                    <p>Customer's email: <i>{{this.email}}</i></p>
+                    <p>Address to send: <i>{{this.address}} - {{this.city}}</i></p>
+                    <p>Price to pay: <i>{{this.totalPrice}} €</i></p>
+
+                </div>
+                <div class="panel-footer">Status: <strong>{{this.status}}</strong></div>
+            </div>
+          {{/each}}
+          {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <h2 style="color: black;" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Users <i class="fas fa-users"></i></h2>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        {{# each users}}
+          {{# each this }}
+            <div class="well well-sm"><i class="fas fa-user-circle"></i> {{this.this.email}}</div>
+          {{/each}}
+          {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+</div>
+{{else}}
 <div class="row">
     <div class=" panel panel-primary">
         <div class="panel-heading">
@@ -33,3 +108,4 @@
         </div>
     </div>
 </div>
+{{/if}}

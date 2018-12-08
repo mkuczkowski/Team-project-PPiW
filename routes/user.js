@@ -6,21 +6,40 @@ var csrfProtection = csrf();
 
 var Order = require('../models/order');
 var Cart = require('../models/cart');
+var Product = require('../models/product');
+var User = require('../models/user');
 
 router.use(csrfProtection);
 
 router.get('/profile', isLoggedIn, function(req, res, next) {
-  Order.find({user: req.user}, function(err, orders) {
-    if(err) {
-      return res.write('Error!');
-    }
-    var cart;
-    orders.forEach(function(order) {
-      cart = new Cart(order.cart);
-      order.items = cart.generateArray();
+  var products = [];
+  var users = [];
+  var orders = [];
+  if(req.user.isAdmin) {
+    Product.find(function(err, items) {
+      products.push(items);
     });
-    res.render('user/profile', { orders: orders, name: req.user.email});
-  });
+    User.find(function(err, item) {
+        users.push(item);
+    });
+    Order.find(function(err, item) {
+        orders.push(item);
+    });
+    return res.render('user/profile', { users: users, products: products, orders: orders, name: req.user.email, isAdmin: req.user.isAdmin});
+  } else {
+    Order.find({user: req.user}, function(err, orders) {
+      if(err) {
+        return res.write('Error!');
+      }
+      var cart;
+      orders.forEach(function(order) {
+        cart = new Cart(order.cart);
+        order.items = cart.generateArray();
+      });
+      res.render('user/profile', { users: users, products: products, orders: orders, name: req.user.email, isAdmin: req.user.isAdmin});
+    });
+  }
+  
 });
 
 router.get('/logout', isLoggedIn, function(req, res, next) {

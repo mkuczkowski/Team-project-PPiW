@@ -42,6 +42,23 @@ router.get('/product/:id', function(req, res, next) {
   });
 });
 
+router.get('/new-product', isLoggedIn, function(req, res, next) {
+  res.render('shop/new-product');
+});
+
+router.post('/new-product', isLoggedIn, function(req, res, next) {
+  Product.create({imagePath: req.body.imagePath, title: req.body.title,
+    trailer: req.body.trailer, cover: req.body.cover, price: req.body.price,
+    description: req.body.description}, function(err, product) {
+      if(err) {
+        console.log(err);
+      } else {
+        product.save();
+        res.redirect('/product/' + product._id);
+      }
+  });
+});
+
 router.get('/product/:id/comment/new', isLoggedIn, function(req, res, next) {
   Product.findById(req.params.id, function(err, product) {
     if (err) {
