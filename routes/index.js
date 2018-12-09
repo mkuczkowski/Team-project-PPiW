@@ -5,6 +5,7 @@ var Comments = require('../models/comment');
 var Product = require('../models/product');
 var Order = require('../models/order');
 var date = require('date-and-time');
+var fs = require('fs'); 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.query.search) {
@@ -179,16 +180,24 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     totalPrice: cart.totalPrice
   });
 
-  /* TODO: Generate txt/json file with order confirmation
-  var boughtProductsInfo = [];
-  var productsInCart = cart.generateArray();
-  productsInCart.forEach(function(foundItem) {
-    boughtProductsInfo.push(foundItem.quantity + " x " + foundItem.item.title);
-  });  
-  boughtProductsInfo.forEach(function(item) {
-    console.log(item);
-  });
-  */
+ var boughtProductsInfo = "";
+ var productsInCart = cart.generateArray();
+ var datetime = date.format(now, 'YYYY/MM/DD HH:mm:ss');
+ var time = datetime + '\r\n';
+ var dateNumbers = datetime.replace(/[^0-9\.]+/g,'');
+ var text = "PPiW bank number: " + req.body.bankInfo + "\r\nOrdered products: \r\n";
+ var text2 = "\r\nYour shipping address: \r\nFull name: " + req.body.fullName +
+  "\r\nE-mail: " + req.body.email + "\r\nAddress: " + req.body.city + " " + req.body.address + 
+  "\r\nCost: " + cart.totalPrice + " €";
+
+ productsInCart.forEach(function(foundItem) {
+   boughtProductsInfo += foundItem.quantity + " x " + foundItem.item.title;
+   boughtProductsInfo += "\r\n";
+ });
+
+ fs.writeFile("Receipt "+ dateNumbers + ".txt", time + text + boughtProductsInfo + text2 , function (err) {
+  if (err) return console.log(err);
+ });
 
   order.save(function(err, result) {
     req.flash('success', 'Successfully bought product!');
