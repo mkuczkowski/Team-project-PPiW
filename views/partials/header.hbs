@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <a class="navbar-brand zoom" id="logo-nav" href="/">PPiW <span id="logo-shop">shop</span></a>
+                <a class="nav navbar-brand navbar-nav navbar-left zoom" id="logo-nav" href="/">PPiW <span id="logo-shop">shop</span></a>
                 <ul class="nav navbar-nav navbar-right">
                   {{# if login }}
                     <li><a href="/user/profile"><i class="fas fa-user-cog" style="color: dodgerblue;"></i> My account </a></li>
@@ -22,7 +22,7 @@
                         <a href="/shopping-cart"><i class="fas fa-shopping-cart" style="color: orange;"></i><span class="badge product-quantity" style="background-color:dodgerblue;">{{session.cart.totalQuantity}}</span></a>  
                     </li>
                 </ul>
-                <form action="/" class="navbar-form navbar-center" method="GET">
+                <form action="/" class="navbar-form navbar-left" method="GET">
                     <div class="form-group">
                         <input type="text" name="search" class="form-control search" id="searchInput" placeholder="Search for games...">
                         <button type="submit" class="btn" value="search" id="submitSearch"><i class="fas fa-search"></i></button>

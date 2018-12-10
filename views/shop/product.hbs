@@ -37,11 +37,11 @@
         <div class="panel-body">
           <i class="fas fa-comment-dots"></i> {{this.content}}
           <p>Rating: {{this.rating}}/10</p>
-          <p class="pull-right" style="font-size: 0.75em; font-style: italic; "> {{this.created}}</p>
+          <p class="pull-right" style="font-size: 0.75em; font-style: italic; "> {{this.created}} <i class="fas fa-calendar-alt"></i></p>
         </div>
     </div>
 {{/each}}
-  <a href="/product/{{product._id}}/comment/new" class="btn btn-success zoom" style="margin-top: 1%; width: 100%;">Add a new comment</a>
+  <a href="/product/{{product._id}}/comment/new" class="btn btn-success zoom" style="margin-top: 1%; width: 100%;">Add a new comment <i class="far fa-comment-dots"></i></a>
 </div>
 {{/if}}
 </div>

@@ -1,7 +1,7 @@
 body {
   background: url("https://c.pxhere.com/photos/66/81/gamepad_video_game_controller_game_controller_controller_fun_playing_gaming_technology-568722.jpg!d") no-repeat fixed;
   font-family: 'Kanit', sans-serif;
-  font-size: 17px;
+  font-size: 17.5px;
   background-size: cover;
 }
 
@@ -178,4 +178,41 @@ color: orange;
 }
 .form-control:hover {
   background-color: rgb(203, 214, 218);
+}
+
+@media (max-width: 1080px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-left,.navbar-right {
+      float: none !important;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .collapse.in{
+      display:block !important;
+  }
 }

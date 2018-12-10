@@ -18,7 +18,7 @@
           {{# each products}}
           {{# each this }}
             <div class="well well-sm">{{this.this.title}}
-            <a href="/product/{{this.this._id}}/delete" class="btn btn-sm btn-danger pull-right">Delete product</a></div>
+            <a href="/product/{{this.this._id}}/delete" class="btn btn-sm btn-danger pull-right">Delete product <i class="far fa-times-circle"></i></a></div>
           {{/each}}
           {{/each}}
             <a href="/new-product" class="btn btn-success" style="width: 100%;"><h4 align="center">Add a new game <i class="far fa-plus-square"></i></h4></a>
@@ -39,16 +39,16 @@
           {{# each this }}
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <p>Date of order: <i>{{this.created}}</i></p>
-                    <p>Customer's full name: <i>{{this.fullName}}</i></p>
-                    <p>Customer's email: <i>{{this.email}}</i></p>
-                    <p>Address to send: <i>{{this.address}} - {{this.city}}</i></p>
-                    <p>Price to pay: <i>{{this.totalPrice}} €</i></p>
+                    <p><i class="far fa-calendar-alt"></i> Date of order: <i>{{this.created}}</i></p>
+                    <p><i class="far fa-user"></i> Customer's full name: <i>{{this.fullName}}</i></p>
+                    <p><i class="far fa-envelope"></i> Customer's email: <i>{{this.email}}</i></p>
+                    <p><i class="fas fa-map-marked-alt"></i> Address to send: <i>{{this.address}} - {{this.city}}</i></p>
+                    <p><i class="fas fa-money-bill"></i> Price to pay: <i>{{this.totalPrice}} €</i></p>
 
                 </div>
-                <div class="panel-footer">Status: <strong>{{this.status}}</strong>
-                <a href="/cancel-order/{{this._id}}" class="btn btn-sm btn-danger pull-right">Cancel order</a>
-                <a href="/confirm-order/{{this._id}}" class="btn btn-sm btn-success pull-right" style="margin-right: 1%;">Confirm order</a>
+                <div class="panel-footer"><i class="fas fa-info-circle"></i> Status: <strong>{{this.status}}</strong>
+                <a href="/cancel-order/{{this._id}}" class="btn btn-sm btn-danger pull-right">Cancel order <i class="fas fa-ban"></i></a>
+                <a href="/confirm-order/{{this._id}}" class="btn btn-sm btn-success pull-right" style="margin-right: 1%;">Confirm order <i class="far fa-check-circle"></i></a>
                 
                 </div>
             </div>
@@ -107,7 +107,7 @@
             <div class="panel-footer" style="height: 80px;">
                 <h4 class="pull-left">Total cost: {{ this.cart.totalPrice }} €</h4>
                 <h4 align="center">Status: <span class="orderStatus">{{this.status}}</span></h4>
-                <p class="pull-right">{{this.created}}</p></div>
+                <i class="pull-right">{{this.created}}</i></div>
             </div>
         {{/each}}
         </div>
