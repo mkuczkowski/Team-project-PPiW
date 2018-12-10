@@ -17,7 +17,8 @@
       <div class="panel-body">
           {{# each products}}
           {{# each this }}
-            <div class="well well-sm">{{this.this.title}} <span class="label label-danger pull-right">Delete product</span></div>
+            <div class="well well-sm">{{this.this.title}}
+            <a href="/product/{{this.this._id}}/delete" class="btn btn-sm btn-danger pull-right">Delete product</a></div>
           {{/each}}
           {{/each}}
             <a href="/new-product" class="btn btn-success" style="width: 100%;"><h4 align="center">Add a new game <i class="far fa-plus-square"></i></h4></a>
@@ -45,7 +46,11 @@
                     <p>Price to pay: <i>{{this.totalPrice}} €</i></p>
 
                 </div>
-                <div class="panel-footer">Status: <strong>{{this.status}}</strong></div>
+                <div class="panel-footer">Status: <strong>{{this.status}}</strong>
+                <a href="/cancel-order/{{this._id}}" class="btn btn-sm btn-danger pull-right">Cancel order</a>
+                <a href="/confirm-order/{{this._id}}" class="btn btn-sm btn-success pull-right" style="margin-right: 1%;">Confirm order</a>
+                
+                </div>
             </div>
           {{/each}}
           {{/each}}

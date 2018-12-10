@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -9,22 +9,6 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Featured <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">On sale</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Game categories <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">RPG</a></li>
-                            <li><a href="#">FPS</a></li>
-                            <li><a href="#">Action etc</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">etc</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">...</a></li>
-                        </ul>
-                    </li>
-                </ul>
                 <a class="navbar-brand zoom" id="logo-nav" href="/">PPiW <span id="logo-shop">shop</span></a>
                 <ul class="nav navbar-nav navbar-right">
                   {{# if login }}
@@ -35,10 +19,10 @@
                     <li id="loginBtn"><a href="/user/signin"><i class="fas fa-user " style="color: dodgerblue;"></i> Sign in</a></li>
                   {{/if}}
                     <li>
-                        <a href="/shopping-cart"><i class="fas fa-shopping-cart" style="color: orange;"></i> Cart <span class="badge product-quantity" style="background-color:dodgerblue;">{{session.cart.totalQuantity}}</span></a>  
+                        <a href="/shopping-cart"><i class="fas fa-shopping-cart" style="color: orange;"></i><span class="badge product-quantity" style="background-color:dodgerblue;">{{session.cart.totalQuantity}}</span></a>  
                     </li>
                 </ul>
-                <form action="/" class="navbar-form navbar-right" method="GET">
+                <form action="/" class="navbar-form navbar-center" method="GET">
                     <div class="form-group">
                         <input type="text" name="search" class="form-control search" id="searchInput" placeholder="Search for games...">
                         <button type="submit" class="btn" value="search" id="submitSearch"><i class="fas fa-search"></i></button>

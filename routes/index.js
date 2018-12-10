@@ -8,28 +8,26 @@ var date = require('date-and-time');
 var fs = require('fs'); 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var sizeOfEachPiece = 3;
+  var productsPieces = [];
   if(req.query.search) {
     const regex = new RegExp(escapeRegExp(req.query.search), 'gi');
     Product.find({title: regex}, function(err, products) {
       if(err) {
         console.log(err);
       } else {
-        var productChunks = [];
-        var chunkSize = 3;
-        for(var i = 0; i < products.length; i += chunkSize) {
-          productChunks.push(products.slice(i, i + chunkSize));
+        for(var i = 0; i < products.length; i += sizeOfEachPiece) {
+          productsPieces.push(products.slice(i, i + sizeOfEachPiece));
         }
-        res.render('shop/index', {products: productChunks});
+        res.render('shop/index', {products: productsPieces});
       }
     });
   } else {
-    Product.find(function(err, docs) {
-      var productChunks = [];
-      var chunkSize = 3;
-      for(var i = 0; i < docs.length; i += chunkSize) {
-        productChunks.push(docs.slice(i, i + chunkSize));
+    Product.find(function(err, foundProduct) {
+      for(var i = 0; i < foundProduct.length; i += sizeOfEachPiece) {
+        productsPieces.push(foundProduct.slice(i, i + sizeOfEachPiece));
       }
-      res.render('shop/index', { title: 'PPiW Shop', products: productChunks });
+      res.render('shop/index', { title: 'PPiW Shop', products: productsPieces });
     });
   }
 });
@@ -43,11 +41,11 @@ router.get('/product/:id', function(req, res, next) {
   });
 });
 
-router.get('/new-product', isLoggedIn, function(req, res, next) {
+router.get('/new-product', isLoggedIn, isAdmin, function(req, res, next) {
   res.render('shop/new-product');
 });
 
-router.post('/new-product', isLoggedIn, function(req, res, next) {
+router.post('/new-product', isLoggedIn, isAdmin, function(req, res, next) {
   Product.create({imagePath: req.body.imagePath, title: req.body.title,
     trailer: req.body.trailer, cover: req.body.cover, price: req.body.price,
     description: req.body.description}, function(err, product) {
@@ -57,6 +55,37 @@ router.post('/new-product', isLoggedIn, function(req, res, next) {
         product.save();
         res.redirect('/product/' + product._id);
       }
+  });
+});
+
+router.get('/confirm-order/:id', isLoggedIn, isAdmin, function(req, res, next) {
+  Order.findById(req.params.id, function(err, order) {
+    if(err) {
+      return res.redirect('/');
+    }
+    order.status = "Confirmed";
+    order.save();
+    res.redirect('/user/profile');
+  })
+});
+
+router.get('/cancel-order/:id', isLoggedIn, isAdmin, function(req, res, next) {
+  Order.findById(req.params.id, function(err, order) {
+    if(err) {
+      return res.redirect('/');
+    }
+    order.status = "Cancelled";
+    order.save();
+    res.redirect('/user/profile');
+  })
+});
+
+router.get('/product/:id/delete', isLoggedIn, isAdmin, function(req, res, next) {
+  Product.findByIdAndRemove(req.params.id, function(err, product) {
+    if(err) {
+      res.redirect('/');
+    }
+    res.redirect('/user/profile');
   });
 });
 
@@ -213,6 +242,13 @@ function isLoggedIn(req, res, next) {
   req.flash("error", "You must be logged in to do that!");
   res.redirect('/user/signin');
 };
+
+function isAdmin(req, res, next) {
+  if(req.user.isAdmin) {
+    return next();
+  }
+  res.redirect('/');
+}
 
 function escapeRegExp(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');

@@ -84,9 +84,10 @@ border: 2px solid dodgerblue;
 
 #logo-nav {
 color: dodgerblue;
-font-size: 38px;
-padding-left: 18%;
+font-size: 49px;
 font-family: 'Montserrat Subrayada', sans-serif;
+margin-right: 2%;
+padding-top: 1.25%;
 }
 
 #logo-shop {
@@ -141,6 +142,8 @@ color: orange;
   border-style: solid;
   border-width: 1.85px;
   background-color: rgb(216, 213, 213);
+  width: 350px;
+  height: 40px;
 }
 
 #searchInput:focus {
