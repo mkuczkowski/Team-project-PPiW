@@ -10,7 +10,7 @@
       </div>
         <div class="jumbotron">
           <p>{{product.description}}</p>
-          <div class="star-rating">
+          <div class="star-rating" style="font-size: 26px;">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -22,7 +22,8 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
           </div>
-          <p>Rating: <span class="rating-value">{{product.rating}}</span>/10 <i>({{product.votes}} votes)</i></p>
+          <h3 class="pull-right"><i class="fas fa-money-bill"></i> Price: {{product.price}} €</h3>
+          <h3><i class="fas fa-poll"></i> Rating: <span class="rating-value">{{product.rating}}</span>/10 <i>({{product.votes}} votes)</i></h3>
         </div>
       <a href="/add-to-cart/{{product._id}}" class="btn btn-lg btn-info btn-success pull-right zoom" role="button">Add to cart <i class="fas fa-cart-plus"></i></a>
     </div>

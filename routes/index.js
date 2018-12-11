@@ -58,6 +58,26 @@ router.post('/new-product', isLoggedIn, isAdmin, function(req, res, next) {
   });
 });
 
+router.get('/product/:id/edit', isLoggedIn, isAdmin, function(req, res, next) {
+  Product.findById(req.params.id, function(err, foundProduct) {
+    if(err) {
+      return res.redirect('/');
+    }
+    res.render('shop/edit-product', {product: foundProduct});
+  });
+});
+
+router.put('/product/:id', isLoggedIn, isAdmin, function(req, res, next) {
+  Product.findByIdAndUpdate(req.params.id, {imagePath: req.body.imagePath, title: req.body.title,
+    trailer: req.body.trailer, cover: req.body.cover, price: req.body.price,
+    description: req.body.description}, function(err, foundProduct) {
+      if(err) {
+        return res.redirect('/');
+      }
+      res.redirect('/product/' + foundProduct._id);      
+  })
+})
+
 router.get('/confirm-order/:id', isLoggedIn, isAdmin, function(req, res, next) {
   Order.findById(req.params.id, function(err, order) {
     if(err) {
@@ -80,7 +100,7 @@ router.get('/cancel-order/:id', isLoggedIn, isAdmin, function(req, res, next) {
   })
 });
 
-router.get('/product/:id/delete', isLoggedIn, isAdmin, function(req, res, next) {
+router.delete('/product/:id', isLoggedIn, isAdmin, function(req, res, next) {
   Product.findByIdAndRemove(req.params.id, function(err, product) {
     if(err) {
       res.redirect('/');

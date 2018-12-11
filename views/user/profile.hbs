@@ -17,8 +17,12 @@
       <div class="panel-body">
           {{# each products}}
           {{# each this }}
+          <form action="/product/{{this.this._id}}?_method=DELETE" method="POST" id="form{{this.this._id}}">
             <div class="well well-sm">{{this.this.title}}
-            <a href="/product/{{this.this._id}}/delete" class="btn btn-sm btn-danger pull-right">Delete product <i class="far fa-times-circle"></i></a></div>
+              <button type="submit" class="btn btn-sm btn-danger pull-right" form="form{{this.this._id}}">Delete product <i class="far fa-times-circle"></i></button>
+          </form>
+            <a href="/product/{{this.this._id}}/edit" class="btn btn-sm btn-warning pull-right" style="margin-right: 1%;">Edit product <i class="far fa-edit"></i></a>
+            </div>
           {{/each}}
           {{/each}}
             <a href="/new-product" class="btn btn-success" style="width: 100%;"><h4 align="center">Add a new game <i class="far fa-plus-square"></i></h4></a>
