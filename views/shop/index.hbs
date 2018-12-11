@@ -39,6 +39,20 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <hr>
+        <div class="btn-group">
+            <button type="button" class="btn btn-lg btn-primary"><i class="fas fa-sort"></i> Sort products </button>
+            <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/sortby/price"><i class="fas fa-sort-amount-up"></i> By price ascending</a></li>
+                <li><a href="/sortby/price/desc"><i class="fas fa-sort-amount-down"></i> By price descending</a></li>
+                <li><a href="/sortby/title"><i class="fas fa-sort-alpha-down"></i> Alphabetically A-Z</a></li>
+                <li><a href="/sortby/title/desc"><i class="fas fa-sort-alpha-up"></i> Alphabetically Z-A</a></li>
+            </ul>
+        </div>
 {{# each products }}
     <div class="row" style="padding-top: 3%;">
         {{# each this }}

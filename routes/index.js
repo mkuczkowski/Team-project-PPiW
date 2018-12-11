@@ -23,13 +23,37 @@ router.get('/', function(req, res, next) {
       }
     });
   } else {
-    Product.find(function(err, foundProduct) {
+    Product.find({}).sort([['title', -1]]).exec(function(err, foundProduct) { 
       for(var i = 0; i < foundProduct.length; i += sizeOfEachPiece) {
         productsPieces.push(foundProduct.slice(i, i + sizeOfEachPiece));
       }
       res.render('shop/index', { title: 'PPiW Shop', products: productsPieces });
-    });
+     });
   }
+});
+
+router.get('/sortby/:item', function(req, res) {
+  let sizeOfEachPiece = 3;
+  let productsPieces = [];
+  let propertyToSortBy = req.params.item;
+  Product.find({}).sort(propertyToSortBy).exec(function(err, foundProduct) { 
+    for(let i = 0; i < foundProduct.length; i += sizeOfEachPiece) {
+      productsPieces.push(foundProduct.slice(i, i + sizeOfEachPiece));
+    }
+    res.render('shop/index', { title: 'PPiW Shop', products: productsPieces });
+   });
+});
+
+router.get('/sortby/:item/desc', function(req, res) {
+  let sizeOfEachPiece = 3;
+  let productsPieces = [];
+  let propertyToSortBy = req.params.item;
+  Product.find({}).sort([[propertyToSortBy, -1]]).exec(function(err, foundProduct) { 
+    for(let i = 0; i < foundProduct.length; i += sizeOfEachPiece) {
+      productsPieces.push(foundProduct.slice(i, i + sizeOfEachPiece));
+    }
+    res.render('shop/index', { title: 'PPiW Shop', products: productsPieces });
+   });
 });
 
 router.get('/product/:id', function(req, res, next) {
