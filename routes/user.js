@@ -22,10 +22,15 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
     User.find(function(err, item) {
         users.push(item);
     });
-    Order.find(function(err, item) {
+    var productsInCart;
+    Order.find({}).sort([['status', -1]]).exec(function(err, item) {
+        item.forEach(function(order) {
+          productsInCart = new Cart(order.cart);
+          order.items = productsInCart.generateArray();
+        });
         orders.push(item);
+        return res.render('user/profile', { users: users, products: products, orders: orders, name: req.user.email, isAdmin: req.user.isAdmin});
     });
-    return res.render('user/profile', { users: users, products: products, orders: orders, name: req.user.email, isAdmin: req.user.isAdmin});
   } else {
     Order.find({user: req.user}, function(err, orders) {
       if(err) {

@@ -39,16 +39,34 @@
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
+      <div class="btn-group" style="margin-bottom: 2%;">
+            <button type="button" class="btn btn-lg btn-primary"><i class="fas fa-sort"></i> Filter options </button>
+            <button type="button" class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-angle-down"></i>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li style="padding-bottom: 2%;"><a class="btn btn-lg btn-success show-conf">Show confirmed <i class="far fa-check-circle"></i></a></li>
+                <li style="padding-bottom: 2%;"><a class="btn btn-lg btn-warning show-p">Show pending <i class="far fa-clock"></i></a></li>
+                <li><a class="btn btn-lg btn-danger show-canc">Show cancelled <i class="fas fa-ban"></i></a></li>
+            </ul>
+        </div>
           {{# each orders}}
           {{# each this }}
             <div class="panel panel-default">
                 <div class="panel-body">
+                <div class="pull-right" style="width: 300px;">
+                    <p style="margin-left: 25%;"><i class="fas fa-list-ul"></i> Ordered products: </p>
+                    {{# each this.items }}
+                     <p>{{this.quantity}} x <i>{{this.item.title}}</i></p>
+                     {{/each}}
+                     </div>
                     <p><i class="far fa-calendar-alt"></i> Date of order: <i>{{this.created}}</i></p>
                     <p><i class="far fa-user"></i> Customer's full name: <i>{{this.fullName}}</i></p>
                     <p><i class="far fa-envelope"></i> Customer's email: <i>{{this.email}}</i></p>
                     <p><i class="fas fa-map-marked-alt"></i> Address to send: <i>{{this.address}} - {{this.city}}</i></p>
                     <p><i class="fas fa-money-bill"></i> Price to pay: <i>{{this.totalPrice}} €</i></p>
-
+                    
                 </div>
                 <div class="panel-footer"><i class="fas fa-info-circle"></i> Status: <strong>{{this.status}}</strong>
                 <a href="/cancel-order/{{this._id}}" class="btn btn-sm btn-danger pull-right">Cancel order <i class="fas fa-ban"></i></a>

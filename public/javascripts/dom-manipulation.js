@@ -16,4 +16,21 @@ $(document).ready(function () {
         $("html, body").animate({ scrollTop: 0 }, "slow");
         return false;
     });
+
+    $(".show-conf" ).click(function() {
+        $( ".panel-default:contains('Confirmed')" ).css( "display", "" );
+        $( ".panel-default:contains('Pending')" ).css( "display", "none" );
+        $( ".panel-default:contains('Cancelled')" ).css( "display", "none" );
+    });
+    $(".show-canc" ).click(function() {
+        $( ".panel-default:contains('Cancelled')" ).css( "display", "" );
+        $( ".panel-default:contains('Pending')" ).css( "display", "none" );
+        $( ".panel-default:contains('Confirmed')" ).css( "display", "none" );
+    });
+    $( ".show-p" ).click(function() {
+        $( ".panel-default:contains('Pending')" ).css( "display", "" );
+        $( ".panel-default:contains('Confirmed')" ).css( "display", "none" );
+        $( ".panel-default:contains('Cancelled')" ).css( "display", "none" );
+    });
+    
 });

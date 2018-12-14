@@ -129,6 +129,7 @@ router.delete('/product/:id', isLoggedIn, isAdmin, function(req, res, next) {
     if(err) {
       res.redirect('/');
     }
+    req.session.destroy();
     res.redirect('/user/profile');
   });
 });
