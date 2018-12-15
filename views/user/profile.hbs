@@ -66,12 +66,10 @@
                     <p><i class="far fa-envelope"></i> Customer's email: <i>{{this.email}}</i></p>
                     <p><i class="fas fa-map-marked-alt"></i> Address to send: <i>{{this.address}} - {{this.city}}</i></p>
                     <p><i class="fas fa-money-bill"></i> Price to pay: <i>{{this.totalPrice}} €</i></p>
-                    
                 </div>
-                <div class="panel-footer"><i class="fas fa-info-circle"></i> Status: <strong>{{this.status}}</strong>
+                <div class="panel-footer"><i class="fas fa-info-circle"></i> Status: <strong><span class="order-status">{{this.status}}</span></strong>
                 <a href="/cancel-order/{{this._id}}" class="btn btn-sm btn-danger pull-right">Cancel order <i class="fas fa-ban"></i></a>
                 <a href="/confirm-order/{{this._id}}" class="btn btn-sm btn-success pull-right" style="margin-right: 1%;">Confirm order <i class="far fa-check-circle"></i></a>
-                
                 </div>
             </div>
           {{/each}}
@@ -97,42 +95,30 @@
     </div>
   </div>
 </div>
-        </div>
+</div>
 </div>
 {{else}}
-<div class="row">
-    <div class=" panel panel-primary">
-        <div class="panel-heading">
-        <h1 align="center">Welcome back {{name}}</h1>
-        </div>
-        <div class="panel-body">
-        <h2 align="center">My orders <i class="fas fa-gamepad"></i></h2>
-        {{# each orders }}
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    {{# each this.items }}
-                        <div class="col-lg-4 col-sm-6">
-                        <div class="thumbnail">
-                            <img src="{{this.item.cover}}" alt="{{this.item.title}}" style="width: 275px; height:325px;">
-                            <div class="caption">
-                                <div class="clearfix">
-                                <h3 align="center">{{this.quantity}} x {{this.item.title}}</h3>
-                                <p align="center">{{ this.price }} €</p>
-                                </div>     
-                            </div>
-                        </div>
-                        </div>
-                    {{/each}}
-                 </div>
-            </div>
-            <div class="panel-footer" style="height: 80px;">
-                <h4 class="pull-left">Total cost: {{ this.cart.totalPrice }} €</h4>
-                <h4 align="center">Status: <span class="orderStatus">{{this.status}}</span></h4>
-                <i class="pull-right">{{this.created}}</i></div>
-            </div>
-        {{/each}}
-        </div>
-    </div>
-</div>
+<div class="container" style="width: 85%;">
+<div class="container-fluid" style="color: white;"><h1 align="center">Welcome back {{name}}</h1></div> 
+  <h2 align="center" style="color: white;"><i class="far fa-list-alt"></i> My orders</h2><hr>
+  {{# each orders }}
+      <div class="panel panel-default" style="width: 31%; min-width: 250px; float: left; margin: 1%;">
+          <div class="panel-body">
+              <p><i class="far fa-calendar-alt"></i> <i>{{this.created}}</i></p>
+              <p><i class="fas fa-map-marked-alt"></i> <i>{{this.address}} - {{this.city}}</i></p>
+              <p><i class="fas fa-money-bill"></i> Price to pay: <i>{{this.totalPrice}} €</i></p>
+              <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#order{{this._id}}" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fas fa-list-ul"></i> Ordered products</button>
+              <div class="collapse" id="order{{this._id}}">
+                <div class="well well-sm">
+                  {{# each this.items }}
+                    <p>{{this.quantity}} x <i>{{this.item.title}}</i></p>
+                  {{/each}}
+                </div>
+              </div>
+          </div>
+          <div class="panel-footer"><i class="fas fa-info-circle"></i> Status: <strong><span class="order-status">{{this.status}}</span></strong></div>
+      </div>
+    {{/each}}
+</div><hr>
 {{/if}}

@@ -32,5 +32,8 @@ $(document).ready(function () {
         $( ".panel-default:contains('Confirmed')" ).css( "display", "none" );
         $( ".panel-default:contains('Cancelled')" ).css( "display", "none" );
     });
-    
+
+    $( ".order-status:contains('Confirmed')" ).css( "color", "green" ).append(' <i class="far fa-check-circle"></i>');
+    $( ".order-status:contains('Pending')" ).css( "color", "orange" ).append(' <i class="far fa-clock"></i>');
+    $( ".order-status:contains('Cancelled')" ).css( "color", "red" ).append(' <i class="fas fa-ban"></i>');
 });
