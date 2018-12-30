@@ -4,10 +4,14 @@ Online game store
 
   - Login/Registration validation with password encrypting stored in database as hash
   - Adding items to cart and saving them in session as cookies (currently set to 3 hours)
+  - Removing certain items from cart (reducing quantity by 1 of the same type or removing all of the same type)
   - Storing user's orders in database after checking out (contains total price and quantity)
   - Adding comments to products with review rating (1-10) and calculating product's rating depending on total votes of users (user can review product only once)
   - Search bar that allows user to find any game from database
-  - Administration panel: managing products, orders and users
+  - Administration panel: managing products (adding new ones, editing and deleting current ones), orders and users
+  - Order statuses: admin can confirm and cancel current orders (after user's check out, order's status is set to "pending")
+  - Sorting products options: by price ascending/descending, alphabetically A-Z/Z-A
+  - Interactive map with our fictional shops marked down
 
 ### Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
@@ -36,16 +40,22 @@ If you want to manage your database you can open mongo shell in another terminal
 ```sh
 "C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe"
 ```
+
+ #### Install dependencies
+ Enter your project folder and run command:
+ ```sh
+npm install
+```
 At the beginning your database will be empty so you can use product seeder to insert some products.
 Remember to replace "project" with your project path!
 ```sh
-$ cd project/seed
-$ node product-seeder.js
-$ cd ..
+cd project/seed
+node product-seeder.js
+cd ..
 ```
 Now you can start the application:
 ```sh
-$ npm start
+npm start
 ```
 Open project by navigating to your server address in your preferred browser.
 
@@ -65,3 +75,4 @@ localhost:3000
 * [Morgan](https://www.npmjs.com/package/morgan/v/1.1.1) - Logging middleware
 * [csurf](https://www.npmjs.com/package/csurf) - Node.js CSRF protection middleware.
 * [bcrypt-nodejs](https://www.npmjs.com/package/bcrypt-nodejs) - Library to help you hash passwords
+* [Leaflet](https://leafletjs.com/) - an open-source JavaScript library for mobile-friendly interactive maps
